@@ -30,47 +30,37 @@
 <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 <script src="lib/Leaflet.Geodesic.js"></script>
 <script src="lib/mapController.js"></script>
-<script src="controllers/RegexController.js"></script>
+<script src="directives/Regex.js"></script>
 
-<body ng-app>
-  
-
-<form name="form" class="css-form" novalidate>
-  <div>
-   Coordinates Field:
-    <input type="number" ng-model="degrees1" name="degrees1"
-           min="-90" max="90" integer />{{degrees1}}<br />
-    <span ng-show="form.degrees1.$error.integer">The value is not a valid degrees!</span>
-    <span ng-show="form.degrees1.$error.min || form.degrees1.$error.max">
-      The value must be in range 0 to 360!</span>
-    <input type="number" ng-model="minutes1" name="minutes1"
-           min="0" max="59" integer1 />{{minutes1}}<br />
-    <span ng-show="form.minutes1.$error.integer1">The value is not a valid integer!</span>
-    <span ng-show="form.minutes1.$error.min || form.minutes1.$error.max">
-      The value must be in range 0 to 59!</span>
-  </div>
-</form>
-
-  <br><hr><br>
+<body ng-app="app-map">
   <div class="row fullheight">
     <div class="col-sm-3 fullheight">
       <div class="container">
+        Latitude
         <br/>
         <form name="myForm">
           <label>
            Degrees:
-           <input type="text" name="degreesField" ng-model="degrees" required>
+           <input type="text" name="latDegrees" ng-model="coor.degrees" check-regex>
          </label>
-         <div role="alert">
-          <span style="color:red;" ng-show="myForm.degreesField.$error.required">
-           Required!</span>
-           Model: {{degrees}}
-         </div>
+         <span ng-show="myForm.latDegrees.$error.checkRegex">The value should be in the range from -90 to 90!</span></br></br>
+         <label>
+           Minuts:
+           <input type="text" name="latMinuts" ng-model="coor.minut" check-regex>
+         </label>
+         <span ng-show="myForm.latMinuts.$error.checkRegex">The value should be in the range from 0 to 59!</span></br></br>
+         <label>
+           Seconds:
+           <input type="text" name="latSeconds" ng-model="coor.seconds" check-regex>
+         </label>
+         <span ng-show="myForm.latSeconds.$error.checkRegex">The value should be in the range from 0 to 59.99!</span><br></br>
        </form>
      </div>
    </div>
    <div class="col-sm-9 fullheight" id ="map"></div>
+
  </div>
  <script src="map.js"></script>
  <script src="polygon.js"></script>
+</body>
  </html>
