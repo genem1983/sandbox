@@ -1,10 +1,11 @@
 var app = angular.module('app-map', []);
 
-//TODO - дописать проверку  для долготы,
-//       regex для секунд работает не для всех случаев 
+//TODO - SECONDS_REGEXP оптимизировать огромный шаблон
 var LAT_DEGREES_REGEXP = /^[+-]?([0-9]|[0-8][0-9]|[9][0])$/;
+var LONG_DEGREES_REGEXP = /^[+-]?([1][8][0]|[1][0-7][0-9]|[0-9]|[0-8][0-9]|[9][0])$/;
 var MINUTES_REGEXP = /^([0-9]|[0-5][0-9])$/;
-var SECONDS_REGEXP = /^(([0-9])\.?[0-9]?[0-9])|(([0-5][0-9])\.?[0-9]?[0-9])$/;
+//var SECONDS_REGEXP = /^(([0-9])\.?[0-9]?[0-9])|(([0-5][0-9])\.?[0-9]?[0-9])$/;
+var SECONDS_REGEXP = /^([0-9][\.][0-9]|[0-9][\.][0-9][0-9]|[0-5][0-9]|[0-9]|[0-5][0-9][\.][0-9]|[0-9]|[0-5][0-9][\.][0-9][0-9])$/;
 app.directive('checkRegex', function() {
   return {
     require: 'ngModel',
@@ -20,12 +21,17 @@ app.directive('checkRegex', function() {
           return true;
         }
 
-        if (MINUTES_REGEXP.test(viewValue) && attrs.name == "latMinuts") {
+        if (LONG_DEGREES_REGEXP.test(viewValue) && attrs.name == "longDegrees") {
           // it is valid
           return true;
         }
 
-        if (SECONDS_REGEXP.test(viewValue) && attrs.name == "latSeconds") {
+        if (MINUTES_REGEXP.test(viewValue) && (attrs.name == "latMinuts" || attrs.name == "longMinuts")) {
+          // it is valid
+          return true;
+        }
+
+        if (SECONDS_REGEXP.test(viewValue) && (attrs.name == "latSeconds" || attrs.name == "longSeconds")) {
           // it is valid
           return true;
         }

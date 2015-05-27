@@ -41,19 +41,35 @@
         <form name="myForm">
           <label>
            Degrees:
-           <input type="text" name="latDegrees" ng-model="coor.degrees" check-regex>
+           <input type="text" name="latDegrees" ng-model="coor.latdegrees" check-regex>
          </label>
          <span ng-show="myForm.latDegrees.$error.checkRegex">The value should be in the range from -90 to 90!</span></br></br>
          <label>
            Minuts:
-           <input type="text" name="latMinuts" ng-model="coor.minut" check-regex>
+           <input type="text" name="latMinuts" ng-model="coor.latminut" check-regex>
          </label>
          <span ng-show="myForm.latMinuts.$error.checkRegex">The value should be in the range from 0 to 59!</span></br></br>
          <label>
            Seconds:
-           <input type="text" name="latSeconds" ng-model="coor.seconds" check-regex>
+           <input type="text" name="latSeconds" ng-model="coor.latseconds" check-regex>
          </label>
          <span ng-show="myForm.latSeconds.$error.checkRegex">The value should be in the range from 0 to 59.99!</span><br></br>
+          Longtitude
+          </br>
+          Degrees:
+           <input type="text" name="longDegrees" ng-model="coor.longdegrees" check-regex>
+         </label>
+         <span ng-show="myForm.longDegrees.$error.checkRegex">The value should be in the range from -90 to 90!</span></br></br>
+         <label>
+           Minuts:
+           <input type="text" name="longMinuts" ng-model="coor.longminut" check-regex>
+         </label>
+         <span ng-show="myForm.longMinuts.$error.checkRegex">The value should be in the range from 0 to 59!</span></br></br>
+         <label>
+           Seconds:
+           <input type="text" name="longSeconds" ng-model="coor.longseconds" check-regex>
+         </label>
+         <span ng-show="myForm.longSeconds.$error.checkRegex">The value should be in the range from 0 to 59.99!</span><br></br>
        </form>
      </div>
    </div>
